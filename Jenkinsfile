@@ -1,17 +1,21 @@
 pipeline {
   agent any
   stages {
-    stage('First Message') {
+    stage('Fluffy Build') {
       steps {
-        echo 'First Stage'
-        echo 'Hello first stage!'
+        echo 'Placeholder'
       }
     }
 
-    stage('Random Message') {
+    stage('Fluffy Test') {
       steps {
-        echo 'Random'
-        echo 'Even more random than the last'
+        echo 'Placeholder'
+      }
+    }
+
+    stage('Fluffy Deploy') {
+      steps {
+        echo 'Placeholder'
       }
     }
 
