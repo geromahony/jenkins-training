@@ -7,5 +7,12 @@ pipeline {
       }
     }
 
+    stage('Random Message') {
+      steps {
+        echo 'Random'
+        echo 'Even more random than the last'
+      }
+    }
+
   }
 }
