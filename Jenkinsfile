@@ -4,12 +4,38 @@ pipeline {
     stage('Fluffy Build') {
       steps {
         sh './jenkins/build.sh'
+        archiveArtifacts 'target/*.jar'
       }
     }
 
     stage('Fluffy Test') {
-      steps {
-        sh './jenkins/test-all.sh'
+      parallel {
+        stage('Backend') {
+          steps {
+            sh './jenkins/test-backend.sh'
+            archiveArtifacts 'target/surefire-reports/**/TEST*.xml'
+          }
+        }
+
+        stage('Frontend') {
+          steps {
+            sh './jenkins/test-frontend.sh'
+            archiveArtifacts 'results/**/TEST*.xml'
+          }
+        }
+
+        stage('Performance') {
+          steps {
+            sh './jenkins/test-performance.sh'
+          }
+        }
+
+        stage('Static') {
+          steps {
+            sh './jenkins/test-static.sh'
+          }
+        }
+
       }
     }
 
